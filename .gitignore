@@ -1,0 +1,5 @@
+*.class
+*.jar
+build
+bin
+.gradle
