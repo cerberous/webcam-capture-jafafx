@@ -7,6 +7,8 @@ import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import org.apache.log4j.Logger;
+
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -32,6 +34,8 @@ import com.github.sarxos.webcam.Webcam;
  * @author cpd_chies
  */
 public class AppLancherController implements Initializable {
+
+	private Logger logger = Logger.getLogger(getClass());
 
 	@FXML
 	Button btnStartCamera;
@@ -156,7 +160,7 @@ public class AppLancherController implements Initializable {
 							grabbedImage.flush();
 						}
 					} catch (Exception e) {
-						e.printStackTrace();
+						logger.error("Error", e);
 					}
 				}
 				return null;
@@ -170,7 +174,9 @@ public class AppLancherController implements Initializable {
 
 	private void closeCamera() {
 		if (selWebCam != null) {
-			selWebCam.close();
+			if (selWebCam.isOpen()) {
+				selWebCam.close();
+			}
 		}
 	}
 
