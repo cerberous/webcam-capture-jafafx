@@ -175,7 +175,9 @@ public class AppLancherController implements Initializable {
 	private void closeCamera() {
 		if (selWebCam != null) {
 			if (selWebCam.isOpen()) {
+				logger.info(">>>>>>>>>> is open");
 				selWebCam.close();
+				logger.info(">>>>>>>>>> closed");
 			}
 		}
 	}
